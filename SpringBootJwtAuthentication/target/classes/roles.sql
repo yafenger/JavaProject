@@ -1,3 +1,4 @@
-INSERT INTO roles(name) VALUES('ROLE_USER');
-INSERT INTO roles(name) VALUES('ROLE_PM');
-INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+INSERT INTO `stationery`.`roles` (`id`, `name`) VALUES ('1 ', 'Admin');
+INSERT INTO `stationery`.`roles` (`id`, `name`) VALUES ('2', 'Manager');
+INSERT INTO `stationery`.`roles` (`id`, `name`) VALUES ('3', 'Shopowner');
+INSERT INTO `stationery`.`roles` (`id`, `name`) VALUES ('4', 'Employee');

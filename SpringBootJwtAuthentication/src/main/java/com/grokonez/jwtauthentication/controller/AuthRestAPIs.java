@@ -86,20 +86,26 @@ public class AuthRestAPIs {
 
 		strRoles.forEach(role -> {
 			switch (role) {
-			case "admin":
-				Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+			case "Admin":
+				Role adminRole = roleRepository.findByName(RoleName.Admin)
 						.orElseThrow(() -> new RuntimeException("Cause: User Role could not find."));
 				roles.add(adminRole);
 
 				break;
-			case "pm":
-				Role pmRole = roleRepository.findByName(RoleName.ROLE_PM)
+			case "Shopowner":
+				Role ownerRole = roleRepository.findByName(RoleName.Shopowner)
 						.orElseThrow(() -> new RuntimeException("Cause: User Role could not find."));
-				roles.add(pmRole);
+				roles.add(ownerRole);
+
+				break;
+			case "Manager":
+				Role managerRole = roleRepository.findByName(RoleName.Manager)
+						.orElseThrow(() -> new RuntimeException("Cause: User Role could not find."));
+				roles.add(managerRole);
 
 				break;
 			default:
-				Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+				Role userRole = roleRepository.findByName(RoleName.Employee)
 						.orElseThrow(() -> new RuntimeException("Cause: User Role could not find."));
 				roles.add(userRole);
 			}

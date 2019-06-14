@@ -9,20 +9,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestRestAPIs {
 	
-	@GetMapping("/api/test/user")
-	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public String userAccess() {
+	@GetMapping("/api/test/employee")
+	@PreAuthorize("hasRole('Employee') or hasRole('Admin')")
+	public String employeeAccess() {
 		return ">>> User Contents!";
 	}
 
-	@GetMapping("/api/test/pm")
-	@PreAuthorize("hasRole('PM') or hasRole('ADMIN')")
-	public String projectManagementAccess() {
+	@GetMapping("/api/test/manager")
+	@PreAuthorize("hasRole('Manager') or hasRole('Admin')")
+	public String managerAccess() {
+		return ">>> Project Management Board";
+	}
+
+	@GetMapping("/api/test/owner")
+	@PreAuthorize("hasRole('Shopowner') or hasRole('Admin')")
+	public String mangerAccess() {
 		return ">>> Project Management Board";
 	}
 	
 	@GetMapping("/api/test/admin")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('Admin')")
 	public String adminAccess() {
 		return ">>> Admin Contents";
 	}
