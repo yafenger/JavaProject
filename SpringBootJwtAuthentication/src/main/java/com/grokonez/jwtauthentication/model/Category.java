@@ -1,7 +1,6 @@
 package com.grokonez.jwtauthentication.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -16,13 +15,12 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int  id;
 
-    @NotBlank
     @Size( max = 15)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CATID")
-    private List<Category> items;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
+   // @JoinColumn(name = "CATID")
+    private List<Item> items;
 
     public Category() {
     }

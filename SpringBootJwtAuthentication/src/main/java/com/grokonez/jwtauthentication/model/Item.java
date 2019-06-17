@@ -2,6 +2,7 @@ package com.grokonez.jwtauthentication.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "item")
@@ -11,30 +12,30 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank
     private String itemName;
 
-    @NotBlank
     private String unit;
 
-    @NotBlank
     private int stock;
 
-    @NotBlank
     private double unitPrice;
 
-    @Column(name = "CATID")
-    private int catId;
+    @ManyToOne
+    @JoinColumn(name="CATID")
+    private Category category;
+
+    @OneToOne(mappedBy ="orderDetail")
+    private OrderDetail orderDetail;
 
     public Item() {
     }
 
-    public Item(@NotBlank String itemName, @NotBlank String unit, @NotBlank int stock, @NotBlank double unitPrice, int catId) {
+    public Item(String itemName, String unit, int stock, double unitPrice, Category category) {
         this.itemName = itemName;
         this.unit = unit;
         this.stock = stock;
         this.unitPrice = unitPrice;
-        this.catId = catId;
+        this.category = category;
     }
 
     public int getId() {
@@ -77,11 +78,11 @@ public class Item {
         this.unitPrice = unitPrice;
     }
 
-    public int getCatId() {
-        return catId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCatId(int catId) {
-        this.catId = catId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
