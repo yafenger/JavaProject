@@ -1,31 +1,34 @@
 package com.grokonez.jwtauthentication.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 @Entity
 @Table(name = "item")
 public class Item {
 
     @Id
+    @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "item_name")
     private String itemName;
 
+    @Column(name="UNIT")
     private String unit;
 
+    @Column(name="STOCK")
     private int stock;
 
+    @Column(name = "unit_price")
     private double unitPrice;
 
     @ManyToOne
     @JoinColumn(name="CATID")
+    @JsonIgnore
     private Category category;
-
-    @OneToOne(mappedBy ="orderDetail")
-    private OrderDetail orderDetail;
 
     public Item() {
     }
