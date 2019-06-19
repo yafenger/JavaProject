@@ -1,8 +1,8 @@
 package com.grokonez.jwtauthentication.model;
 
 public enum  RoleName {
-        Employee,
-        Manager,
-        Shopowner,
-        Admin
-        }
+        ROLE_EMPLOYEE,
+        ROLE_MANAGER,
+        ROLE_SHOPOWNER,
+        ROLE_ADMIN
+}
