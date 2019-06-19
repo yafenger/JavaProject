@@ -14,15 +14,14 @@ import java.util.List;
 })
 public class Category {
     @Id
-    @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int  id;
 
     @Size( max = 15)
-    @Column(name="NAME")
     private String name;
 
-    @OneToMany(mappedBy ="category")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
+   // @JoinColumn(name = "CATID")
     private List<Item> items;
 
     public Category() {
