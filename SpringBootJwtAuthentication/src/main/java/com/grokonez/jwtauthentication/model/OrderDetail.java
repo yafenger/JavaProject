@@ -18,7 +18,7 @@ public class OrderDetail {
     @JoinColumn(name="ORDERID")
     private Order order;
 
-    @OneToOne
-    @JoinColumn(name="ITEMID")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="ITEMID", referencedColumnName = "ID")
     private Item item;
 }

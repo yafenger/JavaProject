@@ -23,9 +23,9 @@ public class Item {
     @ManyToOne
     @JoinColumn(name="CATID")
     private Category category;
-
-    @OneToOne(mappedBy ="orderDetail")
-    private OrderDetail orderDetail;
+//
+//    @OneToOne(mappedBy ="orderDetail")
+//    private OrderDetail orderDetail;
 
     public Item() {
     }
