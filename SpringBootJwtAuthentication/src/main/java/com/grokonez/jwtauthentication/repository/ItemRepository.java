@@ -13,6 +13,6 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Integer> {
     List<Item> findAll();
 
-    @Query("SELECT i FROM Item i WHERE i.category.name=:catName")
-    List<Item> findItemByCategoryName(@Param("catName") String catName);
+    @Query("SELECT i FROM Item i WHERE i.category.id=:catID")
+    List<Item> findItemByCategoryID(@Param("catID") Integer catID);
 }

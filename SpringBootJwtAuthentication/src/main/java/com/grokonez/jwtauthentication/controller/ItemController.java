@@ -12,26 +12,24 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(value = "api/items")
+@RequestMapping(value = "api/item")
 @Api(tags = { "Item Controller" })
 public class ItemController {
     @Autowired
     private ItemService itemService;
 
 
-    @ApiOperation(value="get all categories")
+    @ApiOperation(value="get all items")
     @GetMapping("/all")
     public List<Item> getAllItems(){
         return this.itemService.getAllItems();
     }
 
 
-    @ApiOperation(value="get items by category name")
-    @GetMapping("/{name}")
-    public List<Item> getItemsByCatName(@PathVariable("name") String name){
-        return this.itemService.getItemByCatName(name);
-    }
-
-    //test git
+//    @ApiOperation(value="get items by category ID")
+//    @GetMapping("/{id}")
+//    public List<Item> getItemsByCatName(@PathVariable("id") Integer id){
+//        return this.itemService.getItemByCatID(id);
+//    }
 
 }

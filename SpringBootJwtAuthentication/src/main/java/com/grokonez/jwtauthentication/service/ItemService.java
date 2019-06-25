@@ -18,7 +18,7 @@ public class ItemService {
         return this.itemRepository.findAll();
     }
 
-    public List<Item>  getItemByCatName(String name){
-        return this.itemRepository.findItemByCategoryName(name);
+    public List<Item>  getItemByCatID(Integer catID){
+        return this.itemRepository.findItemByCategoryID(catID);
     }
 }
