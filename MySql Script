@@ -1,0 +1,95 @@
+CREATE SCHEMA `stationery` ;
+
+CREATE TABLE `stationery`.`category` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+
+
+CREATE TABLE `stationery`.`item` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `itemName` VARCHAR(45) NOT NULL,
+  `catId` INT NOT NULL,
+  `unit` VARCHAR(15) NOT NULL,
+  `stock` INT NOT NULL,
+  `unitPrice` DECIMAL(2) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `catId_idx` (`catId` ASC) VISIBLE,
+  CONSTRAINT `catId`
+    FOREIGN KEY (`catId`)
+    REFERENCES `stationery`.`category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `stationery`.`order` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `orderDate` DATE NOT NULL,
+  `userId` BIGINT(20) NOT NULL,
+  `status` VARCHAR(15) NOT NULL,
+  `remarks` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `userId_idx` (`userId` ASC) VISIBLE,
+  CONSTRAINT `userId`
+    FOREIGN KEY (`userId`)
+    REFERENCES `stationery`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `stationery`.`order_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `orderId` INT(11) NOT NULL,
+  `itemId` INT(11) NOT NULL,
+  `quantity` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `orderId_idx` (`orderId` ASC) VISIBLE,
+  INDEX `itemId_idx` (`itemId` ASC) VISIBLE,
+  CONSTRAINT `orderId`
+    FOREIGN KEY (`orderId`)
+    REFERENCES `stationery`.`order` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `itemId`
+    FOREIGN KEY (`itemId`)
+    REFERENCES `stationery`.`item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+ALTER TABLE `stationery`.`order` 
+CHANGE COLUMN `remarks` `remarks` VARCHAR(200) NULL ;
+
+ALTER TABLE `stationery`.`order_details` 
+RENAME TO  `stationery`.`order_detail` ;
+
+ALTER TABLE `stationery`.`order` 
+RENAME TO  `stationery`.`orders` ;
+
+INSERT INTO `stationery`.`roles` (`id`, `name`) VALUES ('1', 'Admin');
+INSERT INTO `stationery`.`roles` (`id`, `name`) VALUES ('2', 'Manager');
+INSERT INTO `stationery`.`roles` (`id`, `name`) VALUES ('3', 'Employee');
+INSERT INTO `stationery`.`roles` (`id`, `name`) VALUES ('4', 'Shopowner');
+
+ALTER TABLE `stationery`.`item` 
+CHANGE COLUMN `itemName` `item_name` VARCHAR(45) NOT NULL ,
+CHANGE COLUMN `unitPrice` `unit_price` DOUBLE NOT NULL ;
+
+UPDATE `stationery`.`roles` SET `name` = 'ROLE_ADMIN' WHERE (`id` = '1');
+UPDATE `stationery`.`roles` SET `name` = 'ROLE_EMPLOYEE' WHERE (`id` = '3');
+UPDATE `stationery`.`roles` SET `name` = 'ROLE_MANAGER' WHERE (`id` = '2');
+UPDATE `stationery`.`roles` SET `name` = 'ROLE_SHOPOWNER' WHERE (`id` = '4');
+
+INSERT INTO `stationery`.`category` (`id`, `name`) VALUES ('2', 'Clips');
+INSERT INTO `stationery`.`category` (`id`, `name`) VALUES ('3', 'Envelope');
+INSERT INTO `stationery`.`category` (`id`, `name`) VALUES ('4', 'Eraser');
+
+
+
+
+
+
+
+
+
+
+
+
